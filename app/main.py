@@ -1,10 +1,16 @@
 from fastapi import FastAPI, HTTPException
+from contextlib import asynccontextmanager
 
 from . import database, schemas
 
-database.init_db()
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await database.init_db()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/payload", response_model=schemas.CreateResponse)
