@@ -30,9 +30,25 @@ class TestApi:
         assert "detail" in response_json
         assert response_json["detail"] == "Lists must be of same length"
 
-def test_get_payload():
-    get_response = client.get("/payload/testing-123")
-    assert get_response.status_code == 200
-    assert get_response.json()["payload"] == [
-        "testing", "one", "two", "three"
-    ]
+    @pytest.mark.asyncio
+    async def test_get_payload_success(self, db_session):
+        transform_id = await get_or_create_transform_id(
+            db_session, ["one", "three"], ["two", "four"]
+        )
+
+        response = client.get(f"/payload/{transform_id}")
+        assert response.status_code == 200
+
+        response_json = response.json()
+        assert "payload" in response_json
+        response_json["payload"] == [
+            "testing", "one", "two", "three"
+        ]
+
+    def test_get_payload_failure(self):
+        response = client.get("/payload/testing-123")
+        assert response.status_code == 404
+
+        response_json = response.json()
+        assert "detail" in response_json
+        assert response_json["detail"] == "Payload not found"

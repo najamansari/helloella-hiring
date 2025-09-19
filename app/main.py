@@ -27,5 +27,9 @@ async def create_payload(
 
 
 @app.get("/payload/{payload_id}", response_model=schemas.GetResponse)
-async def get_payload(payload_id: str):
-    return {"payload": ["testing", "one", "two", "three"]}
+async def get_payload(payload_id: str, db: AsyncSession = Depends(database.get_db)):
+    transformed = await logic.get_transform(db, payload_id)
+    if not transformed:
+        raise HTTPException(status_code=404, detail="Payload not found")
+
+    return {"payload": transformed}
