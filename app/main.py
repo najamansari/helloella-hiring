@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from . import database, logic, schemas
+from app import database, logic, schemas
 
 
 @asynccontextmanager

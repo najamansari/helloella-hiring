@@ -5,7 +5,7 @@ from typing import List, Optional
 from sqlalchemy import select, insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from .models import Transformation
+from app.models import Transformation
 
 
 async def get_or_create_transform_id(db: AsyncSession, list_1: List[str], list_2: List[str]) -> str:
