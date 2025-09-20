@@ -1,3 +1,5 @@
 fastapi
 sqlalchemy
 aiosqlite
+pydantic_settings
+requests
