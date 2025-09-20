@@ -3,3 +3,4 @@ sqlalchemy
 aiosqlite
 pydantic_settings
 requests
+uvicorn
