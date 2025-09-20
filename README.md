@@ -35,6 +35,27 @@ PYTHONPATH=`pwd` pytest
 ```bash
 mypy .
 ```
+
+## Docker
+
+### Building the Image
+
+```bash
+docker build -t cache-service .
+```
+
+### Running the container
+
+```bash
+docker run -d -p 8000:8000 --name cache-service cache-service
+```
+
+## Running the CLI Tool
+
+```bash
+PYTHONPATH=`pwd` python cli/main.py
+```
+
 ## API Docs
 
 API docs are available at [http://localhost:8000/docs](http://localhost:8000/docs).
