@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine, Column, String, Text
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
-Base = declarative_base()
+
+class Base(DeclarativeBase):
+    pass
 
 
 class Transformation(Base):

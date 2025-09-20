@@ -29,3 +29,12 @@ fastapi run --app app
 ```bash
 PYTHONPATH=`pwd` pytest
 ```
+
+## Running type-checking
+
+```bash
+mypy .
+```
+## API Docs
+
+API docs are available at [http://localhost:8000/docs](http://localhost:8000/docs).
